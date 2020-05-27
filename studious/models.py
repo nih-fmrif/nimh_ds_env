@@ -9,7 +9,7 @@ class ProjectPaper(models.Model):
     doi = models.CharField(max_length=48)
     journal_title = models.CharField(max_length=64)
     title = models.CharField(max_length=250)
-    journal_year = models.IntegerField()
+    journal_year = models.SmallIntegerField()
     open_data = models.CharField(max_length=5)
     data_share = models.CharField(max_length=5)
     project_id = models.IntegerField()
