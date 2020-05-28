@@ -17,7 +17,7 @@ class ProjectPaper(models.Model):
     organization_name = models.CharField(max_length=128)
     
     class Meta:
-    ordering = ('-pmcid',)
+        ordering = ('-pmcid',)
     
     def __str__(self): 
         return self.title
