@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from postgres_copy import CopyManager
 
 class ProjectPaper(models.Model): 
     
@@ -15,6 +15,7 @@ class ProjectPaper(models.Model):
     project_id = models.IntegerField()
     contact_pi_project_leader = models.CharField(max_length=50)
     organization_name = models.CharField(max_length=128)
+    objects = CopyManager()
     
     class Meta:
         ordering = ('-pmcid',)
