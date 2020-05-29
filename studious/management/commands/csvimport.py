@@ -8,7 +8,7 @@ class Command(BaseCommand):
         # Since the CSV headers match the model fields,
         # you only need to provide the file's path (or a Python file object)
         insert_count = ProjectPaper.objects.from_csv(
-            "./data.csv",
+            "./project_paper_pairs2.csv",
             dict(pmcid="pmcid",
                 doi="doi",
                 journal_title="journal_title",
@@ -21,7 +21,5 @@ class Command(BaseCommand):
                 organization_name="organization_name"
                 )
             )
-        print "{} records inserted".format(insert_count)
+        print ("{} records inserted".format(insert_count))
 
-
-$ python manage.py myimportcommand
