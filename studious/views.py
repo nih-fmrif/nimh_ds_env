@@ -11,11 +11,11 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     def countUniqueJournals:
         vals = ProjectPaper.objects.values('journal_title')
         journals = vals.distinct().order_by('journal_title')
-        countedJournals = journals.annotate(the_count=Count('journal_title'))
+        countedJournals = journals.annotate(journal_count=Count('journal_title'))
         return countedJournals
 
     def countUniquePIs:
         vals = ProjectPaper.objects.values('contact_pi_project_leader')
         pis = vals.distinct().order_by('contact_pi_project_leader')
-        countedPIs = pis.annotate(the_count=Count('contact_pi_project_leader'))
+        countedPIs = pis.annotate(pi_count=Count('contact_pi_project_leader'))
         return countedPIs
