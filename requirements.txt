@@ -2,3 +2,4 @@ django-postgres-copy
 djangorestframework
 markdown
 django-filter
+django-cors-headers
