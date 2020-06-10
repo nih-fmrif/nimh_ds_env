@@ -17,4 +17,4 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
 @permission_classes((IsAuthenticated,))
 def unique_journals(request):
     queryset = ProjectPaper.countUniqueJournals()
-    return UniqueJournalSerializer(queryset).data
+    return UniqueJournalSerializer(queryset, many=True).data
