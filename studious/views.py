@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
+from .serializers import UniquePISerializer
 from .models import ProjectPaper
 from django.db.models import Count
 
@@ -19,4 +20,11 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
 def unique_journals(request):
     queryset = ProjectPaper.countUniqueJournals()
     data = UniqueJournalSerializer(queryset, many=True).data
+    return Response(data)
+
+@api_view(("GET",))
+@permission_classes((IsAuthenticated,))
+def unique_pis(request):
+    queryset = ProjectPaper.countUniquePIs()
+    data = UniquePISerializer(queryset, many=True).data
     return Response(data)

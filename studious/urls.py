@@ -12,4 +12,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('uniquejournals/', views.unique_journals, name='unique-journals'),
+    path('uniquepis/', views.unique_pis, name='unique-pis'),
 ]

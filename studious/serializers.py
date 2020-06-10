@@ -9,3 +9,7 @@ class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
 class UniqueJournalSerializer(serializers.Serializer):
     journal_title = serializers.CharField(max_length=64)
     journal_count = serializers.IntegerField(max_value=None, min_value=None)
+
+class UniquePISerializer(serializers.Serializer):
+    contact_pi_project_leader = serializers.CharField(max_length=64)
+    pi_count = serializers.IntegerField(max_value=None, min_value=None)
