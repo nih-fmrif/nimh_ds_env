@@ -7,5 +7,5 @@ class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('pmcid','doi', 'journal_title','title','journal_year','open_data','data_share','project_id','contact_pi_project_leader','organization_name')
 
 class UniqueJournalViewSet(serializers.Serializer):
-    journal_title = serializers.CharField(max_length=64))
+    journal_title = serializers.CharField(max_length=64)
     journal_count = serializers.IntegerField(max_value=None, min_value=None)
