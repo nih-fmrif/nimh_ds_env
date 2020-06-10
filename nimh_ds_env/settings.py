@@ -136,5 +136,5 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = (
-         'nih-fmrif.github.io',
+         'https://nih-fmrif.github.io',
      )
