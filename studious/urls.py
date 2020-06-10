@@ -5,6 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'projectpapers', views.ProjectPaperViewSet)
+router.register(r'uniquejournals', views.UniqueJournalViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
