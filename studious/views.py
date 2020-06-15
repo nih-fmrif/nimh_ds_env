@@ -16,14 +16,14 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
 
 
 @api_view(("GET",))
-@permission_classes((IsAuthenticated,))
+@permission_classes((AllowAny,))
 def unique_journals(request):
     queryset = ProjectPaper.countUniqueJournals()
     data = UniqueJournalSerializer(queryset, many=True).data
     return Response(data)
 
 @api_view(("GET",))
-@permission_classes((IsAuthenticated,))
+@permission_classes((AllowAny,))
 def unique_pis(request):
     queryset = ProjectPaper.countUniquePIs()
     data = UniquePISerializer(queryset, many=True).data
