@@ -39,7 +39,7 @@ class ProjectPaper(models.Model):
     def countUniqueOrgs():
         vals = ProjectPaper.objects.values('organization_name')
         orgs = vals.distinct().order_by('organization_name')
-        countedOrgs = journals.annotate(journal_count=Count('organization_name'))
+        countedOrgs = orgs.annotate(journal_count=Count('organization_name'))
         return countedOrgs
 
 
