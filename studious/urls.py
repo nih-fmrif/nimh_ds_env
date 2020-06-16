@@ -5,6 +5,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'projectpapers', views.ProjectPaperViewSet)
+router.register(r'people', views.PersonViewSet)
+router.register(r'orgs', views.OrgViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

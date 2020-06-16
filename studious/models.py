@@ -33,14 +33,12 @@ class ProjectPaper(models.Model):
     def countUniquePIs():
         vals = ProjectPaper.objects.values('contact_pi_project_leader')
         pis = vals.distinct().order_by('contact_pi_project_leader')
-        countedPIs = pis.annotate(pi_count=Count('contact_pi_project_leader'))
-        return countedPIs
+        return pis
 
     def countUniqueOrgs():
         vals = ProjectPaper.objects.values('organization_name')
         orgs = vals.distinct().order_by('organization_name')
-        countedOrgs = orgs.annotate(journal_count=Count('organization_name'))
-        return countedOrgs
+        return orgs
 
 
 class Org(models.Model): 

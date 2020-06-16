@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from .serializers import OrgSerializer
+from .serializers import PersonSerializer
 from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
@@ -19,6 +21,17 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     filterset_fields = ['id','contact_pi_project_leader','organization_name']
     search_fields = ['id','contact_pi_project_leader','organization_name']
 
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all().order_by('full_name')
+    serializer_class = PersonSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['full_name']
+
+class OrgViewSet(viewsets.ModelViewSet):
+    queryset = Org.objects.all().order_by('pmcid')
+    serializer_class = OrgSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['organization_name']
 
 @api_view(("GET",))
 @permission_classes((AllowAny,))
