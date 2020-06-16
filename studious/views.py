@@ -30,7 +30,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     search_fields = ['full_name']
 
 class OrgViewSet(viewsets.ModelViewSet):
-    queryset = Org.objects.all().order_by('pmcid')
+    queryset = Org.objects.all().order_by('organization_name')
     serializer_class = OrgSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['organization_name']
