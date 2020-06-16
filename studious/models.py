@@ -35,3 +35,25 @@ class ProjectPaper(models.Model):
         pis = vals.distinct().order_by('contact_pi_project_leader')
         countedPIs = pis.annotate(pi_count=Count('contact_pi_project_leader'))
         return countedPIs
+
+    def countUniqueOrgs():
+        vals = ProjectPaper.objects.values('organization_name')
+        orgs = vals.distinct().order_by('organization_name')
+        countedOrgs = journals.annotate(journal_count=Count('organization_name'))
+        return countedOrgs
+
+
+class Org(models.Model): 
+    organization_name = models.CharField(max_length=128)
+
+    def __str__(self): 
+        return self.organization_name
+
+
+class Person(models.Model): 
+    full_name = models.CharField(max_length=128)
+
+    def __str__(self): 
+        return self.full_name
+
+
