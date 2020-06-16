@@ -11,6 +11,8 @@ from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
 from .models import ProjectPaper
+from .models import Org
+from .models import Person
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 
