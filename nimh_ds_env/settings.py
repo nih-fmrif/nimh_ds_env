@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'studious.apps.StudiousConfig',
     'corsheaders',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
