@@ -10,6 +10,6 @@ class Command(BaseCommand):
         objs = (Org(organization_name=i["organization_name"]) for i in orgs)
 
         Org.objects.bulk_create(objs)
-        
-        print ("%s records inserted" % len(objs))
+
+        print ("records inserted")
 
