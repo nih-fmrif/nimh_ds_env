@@ -54,4 +54,11 @@ class Person(models.Model):
     def __str__(self): 
         return self.full_name
 
-
+class ProjectPaperUpdate(models.Model): 
+    pmcid = models.IntegerField()
+    open_data = models.CharField(max_length=5)
+    data_share = models.CharField(max_length=5)
+    project_id = models.IntegerField()
+    edit_note = models.CharField(max_length=250)
+    edit_user = models.CharField(max_length=64)
+    
