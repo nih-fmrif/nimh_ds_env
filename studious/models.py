@@ -69,6 +69,6 @@ class ArticleUpdate(models.Model):
     data_statement = models.TextField()
     edit_user = models.CharField(max_length=64)
     
-        def __str__(self): 
+    def __str__(self): 
         return self.pmcid
 
