@@ -47,7 +47,7 @@ class ProjectPaper(models.Model):
 class Org(models.Model): 
     organization_name = models.CharField(max_length=128)
     has_three_pubs = models.BooleanField()
-    data_score = model.FloatField()
+    data_score = models.FloatField()
 
     def __str__(self): 
         return self.organization_name
@@ -56,7 +56,7 @@ class Org(models.Model):
 class Person(models.Model): 
     full_name = models.CharField(max_length=128)
     has_three_pubs = models.BooleanField()
-    data_score = model.FloatField()
+    data_score = models.FloatField()
 
     def __str__(self): 
         return self.full_name
