@@ -21,18 +21,20 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectPaperSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['id','contact_pi_project_leader','organization_name']
-    search_fields = ['id','contact_pi_project_leader','organization_name']
+    search_fields = ['id','contact_pi_project_leader','organization_name', 'pmcid']
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')
     serializer_class = PersonSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['id']
     search_fields = ['full_name']
 
 class OrgViewSet(viewsets.ModelViewSet):
     queryset = Org.objects.all().order_by('organization_name')
     serializer_class = OrgSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['id']
     search_fields = ['organization_name']
 
 @api_view(("GET",))

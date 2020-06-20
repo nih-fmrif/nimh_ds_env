@@ -11,12 +11,12 @@ class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person
-        fields = ('full_name',)
+        fields = ('id','full_name','data_score')
 
 class OrgSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Org
-        fields = ('organization_name',)
+        fields = ('id','organization_name','data_score')
 
 class UniqueJournalSerializer(serializers.Serializer):
     journal_title = serializers.CharField(max_length=64)

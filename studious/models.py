@@ -13,9 +13,12 @@ class ProjectPaper(models.Model):
     journal_year = models.SmallIntegerField()
     open_data = models.CharField(max_length=5)
     data_share = models.CharField(max_length=5)
+    data_score = models.CharField(max_length=5)
     project_id = models.IntegerField()
     contact_pi_project_leader = models.CharField(max_length=50)
+    pi_id = models.IntegerField()
     organization_name = models.CharField(max_length=128)
+    org_id = models.IntegerField()
     objects = CopyManager()
     
     class Meta:
@@ -43,6 +46,8 @@ class ProjectPaper(models.Model):
 
 class Org(models.Model): 
     organization_name = models.CharField(max_length=128)
+    has_three_pubs = models.BooleanField()
+    data_score = model.FloatField()
 
     def __str__(self): 
         return self.organization_name
@@ -50,15 +55,20 @@ class Org(models.Model):
 
 class Person(models.Model): 
     full_name = models.CharField(max_length=128)
+    has_three_pubs = models.BooleanField()
+    data_score = model.FloatField()
 
     def __str__(self): 
         return self.full_name
 
-class ProjectPaperUpdate(models.Model): 
+
+class ArticleUpdate(models.Model): 
     pmcid = models.IntegerField()
     open_data = models.CharField(max_length=5)
     data_share = models.CharField(max_length=5)
-    project_id = models.IntegerField()
-    edit_note = models.CharField(max_length=250)
+    data_statement = models.TextField()
     edit_user = models.CharField(max_length=64)
     
+        def __str__(self): 
+        return self.pmcid
+
