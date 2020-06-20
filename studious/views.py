@@ -20,7 +20,7 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     queryset = ProjectPaper.objects.all().order_by('pmcid')
     serializer_class = ProjectPaperSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['id','contact_pi_project_leader','organization_name']
+    filterset_fields = ['id','contact_pi_project_leader','organization_name','pi_id','org_id']
     search_fields = ['id','contact_pi_project_leader','organization_name', 'pmcid']
 
 class PersonViewSet(viewsets.ModelViewSet):

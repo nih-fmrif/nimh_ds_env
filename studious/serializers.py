@@ -6,7 +6,7 @@ from .models import Person
 class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProjectPaper
-        fields = ('id', 'pmcid','doi', 'journal_title','title','journal_year','open_data','data_share','project_id','contact_pi_project_leader','organization_name')
+        fields = ('id', 'pmcid','doi', 'journal_title','title','journal_year','open_data','data_share','project_id','contact_pi_project_leader','organization_name','pi_id','org_id')
 
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
