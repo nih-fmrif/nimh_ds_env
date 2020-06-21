@@ -6,6 +6,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .serializers import OrgSerializer
+from .serializers import OrgArticleSerializer
 from .serializers import PersonSerializer
 from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
@@ -22,6 +23,12 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['id','contact_pi_project_leader','organization_name','pi_id','org_id']
     search_fields = ['id','contact_pi_project_leader','organization_name', 'pmcid']
+
+class OrgArticleViewSet(viewsets.ModelViewSet):
+    queryset = ProjectPaper.objects.all().values("org_id", "pmcid").distinct().order_by('title')
+    serializer_class = OrgArticleSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['org_id']
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')
