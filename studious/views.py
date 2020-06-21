@@ -27,8 +27,8 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
 class OrgArticleViewSet(viewsets.ModelViewSet):
     queryset = ProjectPaper.objects.all().values('pmcid','doi','journal_title','title','journal_year','open_data','data_share','organization_name').distinct().order_by('title')
     serializer_class = OrgArticleSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['org_id']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['org_id']
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')
