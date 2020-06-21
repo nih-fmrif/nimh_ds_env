@@ -25,7 +25,7 @@ class ProjectPaperViewSet(viewsets.ModelViewSet):
     search_fields = ['id','contact_pi_project_leader','organization_name', 'pmcid']
 
 class OrgArticleViewSet(viewsets.ModelViewSet):
-    queryset = ProjectPaper.objects.all().values('pmcid','doi','journal_title','title','journal_year','open_data','data_share','organization_name').distinct().order_by('title')
+    queryset = ProjectPaper.objects.all().values('pmcid','doi','journal_title','title','journal_year','open_data','data_share','organization_name').distinct().order_by('pmcid')
     serializer_class = OrgArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['org_id']
