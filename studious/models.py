@@ -47,6 +47,12 @@ class ProjectPaper(models.Model):
 class Org(models.Model): 
     organization_name = models.CharField(max_length=128)
     has_three_pubs = models.BooleanField()
+    count_total_pubs = models.IntegerField()
+    count_data_share = models.IntegerField()
+    count_data_open = models.IntegerField()
+    count_data_total = models.IntegerField()
+    data_share_score = models.FloatField()
+    data_open_score = models.FloatField()
     data_score = models.FloatField()
 
     def __str__(self): 
@@ -56,6 +62,12 @@ class Org(models.Model):
 class Person(models.Model): 
     full_name = models.CharField(max_length=128)
     has_three_pubs = models.BooleanField()
+    count_total_pubs = models.IntegerField()
+    count_data_share = models.IntegerField()
+    count_data_open = models.IntegerField()
+    count_data_total = models.IntegerField()
+    data_share_score = models.FloatField()
+    data_open_score = models.FloatField()
     data_score = models.FloatField()
 
     def __str__(self): 
