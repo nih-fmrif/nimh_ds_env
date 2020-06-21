@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .serializers import OrgSerializer
 from .serializers import OrgArticleSerializer
 from .serializers import PersonSerializer
+from .serializers import PersonArticleSerializer
 from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
@@ -29,6 +30,12 @@ class OrgArticleViewSet(viewsets.ModelViewSet):
     serializer_class = OrgArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['org_id']
+
+class PersonArticleViewSet(viewsets.ModelViewSet):
+    queryset = ProjectPaper.objects.all().values('pmcid','doi','journal_title','title','journal_year','open_data','data_share','contact_pi_project_leader').distinct().order_by('title')
+    serializer_class = PersonArticleSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['pi_id']
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')

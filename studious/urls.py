@@ -8,6 +8,8 @@ router.register(r'projectpapers', views.ProjectPaperViewSet)
 router.register(r'people', views.PersonViewSet)
 router.register(r'orgs', views.OrgViewSet)
 router.register(r'orgArticles', views.OrgArticleViewSet)
+router.register(r'personArticles', views.PersonArticleViewSet)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
