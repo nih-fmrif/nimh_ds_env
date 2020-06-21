@@ -9,7 +9,7 @@ class Command(BaseCommand):
         people = vals.distinct().order_by('id')
         
         for person in people:
-        	Orgs.objects.filter(contact_pi_project_leader=person.fullname).update(pi_id=person.id)
+        	ProjectPaper.objects.filter(contact_pi_project_leader=person.fullname).update(pi_id=person.id)
 
         print ("import complete")
 
