@@ -16,7 +16,7 @@ class OrgArticleSerializer(serializers.HyperlinkedModelSerializer):
 class PersonArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProjectPaper
-        fields = ('pmcid','doi','journal_title','title','journal_year','open_data','data_share','contact_pi_project_leader',)
+        fields = ('id','pmcid','doi','journal_title','title','journal_year','open_data','data_share','contact_pi_project_leader',)
 
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
