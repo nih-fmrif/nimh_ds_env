@@ -14,9 +14,11 @@ from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
 from .serializers import PersonGraphSerializer
 from .serializers import OrgGraphSerializer
+from .serializers import ArticleSerializer
 from .models import ProjectPaper
 from .models import Org
 from .models import Person
+from .models import Article
 from django.db.models import Count, Window, F
 from django.db.models.functions import RowNumber
 from django_filters.rest_framework import DjangoFilterBackend
@@ -40,6 +42,12 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
     serializer_class = PersonArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['pi_id']
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all().order_by('pmcid')
+    serializer_class = ArticleSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['pmcid']
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')

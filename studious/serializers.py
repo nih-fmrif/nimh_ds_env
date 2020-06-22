@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import ProjectPaper
 from .models import Org
 from .models import Person
+from .models import Article
 
 class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -11,12 +12,17 @@ class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
 class OrgArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProjectPaper
-        fields = ('id','pmcid','doi','journal_title','title','journal_year','open_data','data_share','organization_name',)
+        fields = ('pmcid','doi','journal_title','title','journal_year','open_data','data_share','organization_name',)
 
 class PersonArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProjectPaper
         fields = ('id','pmcid','doi','journal_title','title','journal_year','open_data','data_share','contact_pi_project_leader',)
+
+class ArticleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('pmcid','doi','journal_title','title','journal_year','int_open_data','int_data_share',)
 
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

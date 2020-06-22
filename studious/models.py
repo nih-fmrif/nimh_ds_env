@@ -77,6 +77,17 @@ class Person(models.Model):
     def __str__(self): 
         return self.full_name
 
+class Article(models.Model):
+    pmcid = models.IntegerField()
+    doi = models.CharField(max_length=48)
+    journal_title = models.CharField(max_length=64)
+    title = models.CharField(max_length=250)
+    journal_year = models.SmallIntegerField()
+    int_open_data = models.IntegerField()
+    int_data_share = models.IntegerField()
+
+    def __str__(self): 
+        return self.title
 
 class ArticleUpdate(models.Model): 
     pmcid = models.IntegerField()
