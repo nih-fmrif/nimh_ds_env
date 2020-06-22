@@ -13,6 +13,7 @@ from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
 from .serializers import PersonGraphSerializer
+from .serializers import OrgGraphSerializer
 from .models import ProjectPaper
 from .models import Org
 from .models import Person
@@ -40,11 +41,6 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['pi_id']
 
-class PersonGraphViewSet(viewsets.ModelViewSet):
-    authors = Person.objects.filter(has_three_pubs=True)
-    queryset = authors.values('full_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
-    serializer_class = PersonGraphSerializer
-
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')
     serializer_class = PersonSerializer
@@ -52,12 +48,22 @@ class PersonViewSet(viewsets.ModelViewSet):
     filterset_fields = ['id']
     search_fields = ['full_name']
 
+class PersonGraphViewSet(viewsets.ModelViewSet):
+    authors = Person.objects.filter(has_three_pubs=True)
+    queryset = authors.values('full_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
+    serializer_class = PersonGraphSerializer
+
 class OrgViewSet(viewsets.ModelViewSet):
     queryset = Org.objects.all().order_by('organization_name')
     serializer_class = OrgSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['id']
     search_fields = ['organization_name']
+
+class OrgGraphViewSet(viewsets.ModelViewSet):
+    orgs = Org.objects.filter(has_three_pubs=True)
+    queryset = orgs.values('organization_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
+    serializer_class = OrgGraphSerializer
 
 @api_view(("GET",))
 @permission_classes((AllowAny,))
