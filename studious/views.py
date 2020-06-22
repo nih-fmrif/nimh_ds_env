@@ -17,7 +17,7 @@ from .models import ProjectPaper
 from .models import Org
 from .models import Person
 from django.db.models import Count, Window, F
-from django.db.models.functions import DenseRank
+from django.db.models.functions import RowNumber
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -42,7 +42,7 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
 
 class PersonGraphViewSet(viewsets.ModelViewSet):
     authors = Person.objects.filter(has_three_pubs=True)
-    queryset = authors.values('full_name', 'data_score').extra(select={'index': 'ROW_NUMBER() OVER (ORDER BY "data_score")'})
+    queryset = authors.values('full_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
     serializer_class = PersonGraphSerializer
 
 class PersonViewSet(viewsets.ModelViewSet):
