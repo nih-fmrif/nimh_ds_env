@@ -9,6 +9,7 @@ router.register(r'people', views.PersonViewSet)
 router.register(r'orgs', views.OrgViewSet)
 router.register(r'orgArticles', views.OrgArticleViewSet)
 router.register(r'personArticles', views.PersonArticleViewSet)
+router.register(r'personGraph', views.PersonGraphViewSet)
 
 
 # Wire up our API using automatic URL routing.

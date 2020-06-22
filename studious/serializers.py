@@ -23,6 +23,11 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         model = Person
         fields = ('id','full_name','data_score')
 
+class PersonGraphSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Person
+        fields = ('index','full_name','data_score')
+
 class OrgSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Org

@@ -12,11 +12,14 @@ from .serializers import PersonArticleSerializer
 from .serializers import ProjectPaperSerializer
 from .serializers import UniqueJournalSerializer
 from .serializers import UniquePISerializer
+from .serializers import PersonGraphSerializer
 from .models import ProjectPaper
 from .models import Org
 from .models import Person
-from django.db.models import Count
+from django.db.models import Count, Window, F
+from django.db.models.functions import DenseRank
 from django_filters.rest_framework import DjangoFilterBackend
+
 
 class ProjectPaperViewSet(viewsets.ModelViewSet):
     queryset = ProjectPaper.objects.all().order_by('pmcid')
@@ -36,6 +39,16 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
     serializer_class = PersonArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['pi_id']
+
+class PersonGraphViewSet(viewsets.ModelViewSet):
+    authors = Person.objects.filter(has_three_pubs=True)
+    queryset = authors.values('full_name', 'data_score').annotate(
+                                    index=Window(
+                                        expression=DenseRank(),
+                                        order_by=[
+                                        F('data_score').asc(),
+                                    ]))
+    serializer_class = PersonGraphSerializer
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all().order_by('full_name')
