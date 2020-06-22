@@ -11,7 +11,7 @@ class Command(BaseCommand):
         orgs = Org.objects.all()
 
         for o in orgs:
-            paper_stats = ProjectPaper.objects.filter(ord_id_id=o.id).values('org_id',
+            paper_stats = ProjectPaper.objects.filter(ord_id=o.id).values('org_id',
                                                                             'pmcid',
                                                                             'int_data_share',
                                                                             'int_open_data',
