@@ -57,6 +57,7 @@ class Org(models.Model):
     data_share_score = models.FloatField()
     data_open_score = models.FloatField()
     data_score = models.FloatField()
+    index_by_score = models.IntegerField()
 
     def __str__(self): 
         return self.organization_name
