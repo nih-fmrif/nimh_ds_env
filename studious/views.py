@@ -43,7 +43,7 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
 class PersonGraphViewSet(viewsets.ModelViewSet):
     authors = Person.objects.filter(has_three_pubs=True)
     queryset = authors.values('full_name', 'data_score').annotate(
-                                    index=Window(
+                                    count_total_pubs=Window(
                                         expression=DenseRank(),
                                         order_by=[
                                         F('data_score').asc(),
