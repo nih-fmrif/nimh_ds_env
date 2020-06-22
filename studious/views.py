@@ -42,12 +42,7 @@ class PersonArticleViewSet(viewsets.ModelViewSet):
 
 class PersonGraphViewSet(viewsets.ModelViewSet):
     authors = Person.objects.filter(has_three_pubs=True)
-    queryset = authors.values('full_name', 'data_score').annotate(
-                                    count_total_pubs=Window(
-                                        expression=DenseRank(),
-                                        order_by=[
-                                        F('data_score').asc(),
-                                    ]))
+    queryset = authors.values('full_name', 'data_score').extra(select={'index': 'ROW_NUMBER() OVER (ORDER BY "data_score")'})
     serializer_class = PersonGraphSerializer
 
 class PersonViewSet(viewsets.ModelViewSet):

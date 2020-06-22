@@ -28,6 +28,11 @@ class PersonGraphSerializer(serializers.HyperlinkedModelSerializer):
         model = Person
         fields = ('count_total_pubs','full_name','data_score')
 
+class PersonGraphSerializer(serializers.Serializer):
+    full_name = serializers.CharField(max_length=64)
+    data_score = serializers.FloatField()
+    index = serializers.IntegerField()
+
 class OrgSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Org
