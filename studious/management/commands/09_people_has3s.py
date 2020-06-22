@@ -4,5 +4,5 @@ from studious.models import Person
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
-        Person.objects.filter(count_total_pubs_gte=3).update(has_three_pubs=True)
+        Person.objects.filter(count_total_pubs__gte=3).update(has_three_pubs=True)
         print ("tagged users with more than 3 pubs")
