@@ -8,7 +8,7 @@ from studious.models import ProjectPaper
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
-		people = Person.objects.all():
+		people = Person.objects.all()
 
 		for p in people:
 			paper_stats = ProjectPaper.objects.filter(pi_id=p.id).aggregate(count_total_pubs=Count('pmcid'),
