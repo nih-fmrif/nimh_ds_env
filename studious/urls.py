@@ -12,6 +12,7 @@ router.register(r'personArticles', views.PersonArticleViewSet)
 router.register(r'personGraph', views.PersonGraphViewSet)
 router.register(r'orgGraph', views.OrgGraphViewSet)
 router.register(r'articles', views.ArticleViewSet)
+router.register(r'articleupdates', views.ArticleUpdateViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
