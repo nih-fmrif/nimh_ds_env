@@ -3,6 +3,7 @@ from .models import ProjectPaper
 from .models import Org
 from .models import Person
 from .models import Article
+from .models import ArticleUpdate
 
 class ProjectPaperSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -27,7 +28,7 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
 class ArticleUpdateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ArticleUpdate
-        fields = ('pmcid','open_data','data_share','data_statement','edit_user')
+        fields = ('id','pmcid','open_data','data_share','data_statement','edit_user')
 
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
