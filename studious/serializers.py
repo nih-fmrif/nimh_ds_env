@@ -24,6 +24,11 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
         model = Article
         fields = ('pmcid','doi','journal_title','title','journal_year','int_open_data','int_data_share',)
 
+class ArticleUpdateSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ArticleUpdate
+        fields = ('pmcid','open_data','data_share','data_statement','edit_user')
+
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person

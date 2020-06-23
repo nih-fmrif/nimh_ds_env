@@ -15,10 +15,12 @@ from .serializers import UniquePISerializer
 from .serializers import PersonGraphSerializer
 from .serializers import OrgGraphSerializer
 from .serializers import ArticleSerializer
+from .serializers import ArticleUpdateSerializer
 from .models import ProjectPaper
 from .models import Org
 from .models import Person
 from .models import Article
+from .models import ArticleUpdate
 from django.db.models import Count, Window, F
 from django.db.models.functions import RowNumber
 from django_filters.rest_framework import DjangoFilterBackend
@@ -72,6 +74,12 @@ class OrgGraphViewSet(viewsets.ModelViewSet):
     orgs = Org.objects.filter(has_three_pubs=True)
     queryset = orgs.values('organization_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
     serializer_class = OrgGraphSerializer
+
+class ArticleUpdateViewSet(viewsets.ModelViewSet):
+    queryset = ArticleUpdate.objects.all()
+    serializer_class = ArticleUpdateSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id']
 
 @api_view(("GET",))
 @permission_classes((AllowAny,))
