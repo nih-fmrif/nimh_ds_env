@@ -80,6 +80,8 @@ class ArticleUpdateViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleUpdateSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id']
+    permission_classes_by_action = {'create': [AllowAny],
+                                    'list': [IsAdminUser]}
 
 @api_view(("GET",))
 @permission_classes((AllowAny,))
