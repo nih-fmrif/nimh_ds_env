@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from .serializers import OrgSerializer
 from .serializers import OrgArticleSerializer
@@ -81,7 +81,7 @@ class ArticleUpdateViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id']
     permission_classes_by_action = {'create': [AllowAny],
-                                    'list': [IsAdminUser]}
+                                    'list': [IsAuthenticated]}
 
 @api_view(("GET",))
 @permission_classes((AllowAny,))
