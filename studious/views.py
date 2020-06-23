@@ -78,8 +78,6 @@ class OrgGraphViewSet(viewsets.ModelViewSet):
 class ArticleUpdateViewSet(viewsets.ModelViewSet):
     queryset = ArticleUpdate.objects.all()
     serializer_class = ArticleUpdateSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id']
     permission_classes_by_action = {'create': [AllowAny],
                                     'list': [IsAuthenticated]}
     def get_permissions(self):
