@@ -28,7 +28,7 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
 class ArticleUpdateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ArticleUpdate
-        fields = ('pmcid','open_data','data_share','data_statement','edit_user')
+        fields = ('pmcid','open_data','data_share','data_statement','edit_user','is_merged')
 
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
