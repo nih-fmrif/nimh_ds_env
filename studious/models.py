@@ -95,6 +95,8 @@ class ArticleUpdate(models.Model):
     data_share = models.CharField(max_length=5)
     data_statement = models.TextField()
     edit_user = models.CharField(max_length=64)
+    edit_date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    is_merged = models.BooleanField()
     
     def __str__(self): 
         return self.pmcid
