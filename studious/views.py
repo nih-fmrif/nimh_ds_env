@@ -21,6 +21,8 @@ from .models import Org
 from .models import Person
 from .models import Article
 from .models import ArticleUpdate
+from .pagination import PersonPagination
+from .pagination import OrgPagination
 from django.db.models import Count, Window, F
 from django.db.models.functions import RowNumber
 from django_filters.rest_framework import DjangoFilterBackend
@@ -38,12 +40,14 @@ class OrgArticleViewSet(viewsets.ModelViewSet):
     serializer_class = OrgArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['org_id']
+    pagination_class = OrgPagination
 
 class PersonArticleViewSet(viewsets.ModelViewSet):
     queryset = ProjectPaper.objects.all().values('id','pmcid','doi','journal_title','title','journal_year','open_data','data_share','contact_pi_project_leader').distinct().order_by('title')
     serializer_class = PersonArticleSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['pi_id']
+    pagination_class = PersonPagination
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all().order_by('pmcid')
@@ -62,6 +66,7 @@ class PersonGraphViewSet(viewsets.ModelViewSet):
     authors = Person.objects.filter(has_three_pubs=True)
     queryset = authors.values('full_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
     serializer_class = PersonGraphSerializer
+    pagination_class = PersonPagination
 
 class OrgViewSet(viewsets.ModelViewSet):
     queryset = Org.objects.all().order_by('organization_name')
@@ -74,6 +79,7 @@ class OrgGraphViewSet(viewsets.ModelViewSet):
     orgs = Org.objects.filter(has_three_pubs=True)
     queryset = orgs.values('organization_name', 'data_score').annotate(index=Window(expression=RowNumber(), order_by=F('data_score').asc()))
     serializer_class = OrgGraphSerializer
+    pagination_class = OrgPagination
 
 class ArticleUpdateViewSet(viewsets.ModelViewSet):
     queryset = ArticleUpdate.objects.all()
