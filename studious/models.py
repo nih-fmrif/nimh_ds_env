@@ -99,5 +99,5 @@ class ArticleUpdate(models.Model):
     is_merged = models.BooleanField()
     
     def __str__(self): 
-        return self.pmcid
+        return str(self.pmcid)
 
