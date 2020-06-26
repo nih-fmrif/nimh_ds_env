@@ -15,11 +15,11 @@ class Command(BaseCommand):
             int_data_score = 1 if int_open_data==1 or int_data_share==1 else 0
             data_score = "TRUE" if int_data_score==1 else "FALSE"
 
-            arts = Article.objects.filter(pmcid=au.pmcidid)
+            arts = Article.objects.filter(pmcid=au.pmcid)
             arts.update(int_open_data=int_open_data,
                         int_data_share=int_open_data,
                         )
-            pps = ProjectPaper.objects.filter(pmcid=au.pmcidid)
+            pps = ProjectPaper.objects.filter(pmcid=au.pmcid)
             pps.update(open_data=au.open_data,
                         data_share=au.data_share,
                         data_score=data_score,
