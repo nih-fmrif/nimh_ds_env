@@ -27,6 +27,6 @@ class Command(BaseCommand):
                         int_data_share=int_data_share,
                         int_data_score=int_data_score
                         )
-            print ("updated: "+au.pmcid)
+            print ("updated: "+str(au.pmcid))
         aus.update(is_merged=True)
         print ("updates done")
