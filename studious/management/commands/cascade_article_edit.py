@@ -10,8 +10,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         aus = ArticleUpdate.objects.filter(is_merged=False)
         for au in aus:
-            int_open_data = 1 if au['open_data'] == 'TRUE' else 0
-            int_data_share = 1 if au['data_share'] == 'TRUE' else 0
+            int_open_data = 1 if au.open_data == 'TRUE' else 0
+            int_data_share = 1 if au.data_share == 'TRUE' else 0
             int_data_score = 1 if int_open_data==1 or int_data_share==1 else 0
             data_score = "TRUE" if int_data_score==1 else "FALSE"
 
@@ -20,13 +20,13 @@ class Command(BaseCommand):
                         int_data_share=int_open_data,
                         )
             pps = ProjectPaper.objects.filter(pmcid=au.pmcidid)
-            pps.update(open_data=au['open_data'],
-                        data_share=au['data_share'],
+            pps.update(open_data=au.open_data,
+                        data_share=au.data_share,
                         data_score=data_score,
                         int_open_data=int_open_data,
                         int_data_share=int_data_share,
                         int_data_score=int_data_score
                         )
-
+            print ("updated: "+au.pmcid)
         aus.update(is_merged=True)
         print ("updates done")
