@@ -33,7 +33,7 @@ class ArticleUpdateSerializer(serializers.HyperlinkedModelSerializer):
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person
-        fields = ('id','full_name','data_score')
+        fields = ('id','full_name','data_score','count_total_pubs')
 
 class OrgGraphSerializer(serializers.Serializer):
     organization_name = serializers.CharField(max_length=64)
@@ -48,7 +48,7 @@ class PersonGraphSerializer(serializers.Serializer):
 class OrgSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Org
-        fields = ('id','organization_name','data_score')
+        fields = ('id','organization_name','data_score','count_total_pubs')
 
 class UniqueJournalSerializer(serializers.Serializer):
     journal_title = serializers.CharField(max_length=64)
